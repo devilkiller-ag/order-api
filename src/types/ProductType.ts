@@ -11,6 +11,7 @@ interface IProduct {
   name: string;
   type: IProductType;
   inventory: number;
+  cost: number;
 }
 
 

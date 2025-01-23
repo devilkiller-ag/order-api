@@ -24,9 +24,9 @@ const validateProductType = (req: Request, res: Response, next: NextFunction): v
 
 // Middleware for validating the request body
 const validateAddProductRequestBody = (req: Request, res: Response, next: NextFunction): void => {
-  const { name, type, inventory } = req.body;
+  const { name, type, inventory, cost } = req.body;
 
-  if ([name, type, inventory].some(value => value === undefined || value === null)) {
+  if ([name, type, inventory, cost].some(value => value === undefined || value === null)) {
     res.status(400).json(new ApiError(
       new Date().toISOString(),
       400,
@@ -61,6 +61,15 @@ const validateAddProductRequestBody = (req: Request, res: Response, next: NextFu
       new Date().toISOString(),
       400,
       "Inventory must be a number between 1 and 9999",
+      req.originalUrl
+    ));
+  }
+
+  if (typeof cost !== 'number' || cost < 0) {
+    res.status(400).json(new ApiError(
+      new Date().toISOString(),
+      400,
+      "Cost must be a positive number",
       req.originalUrl
     ));
   }

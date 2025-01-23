@@ -37,7 +37,7 @@ const handleGetAllProducts = (req: Request, res: Response): void => {
 
 // Controller for adding a new product
 const handleAddProduct = (req: Request, res: Response): void => {
-  const { name, type, inventory } = req.body;
+  const { name, type, inventory, cost } = req.body;
 
   const productType = getProductType(type);
 
@@ -45,7 +45,8 @@ const handleAddProduct = (req: Request, res: Response): void => {
     id: db.products.size + 1,
     name,
     type: productType,
-    inventory
+    inventory,
+    cost
   }
 
   db.add(newProduct);
