@@ -9,3 +9,5 @@ lib/*
 reports
 
 node_modules
+dist
+.env

@@ -4,8 +4,8 @@
 
 import { IProductType, IProduct } from "../types/ProductTpye";
 
-class ProductsDB {
-  private products: Map<number, IProduct>;
+class DB {
+  products: Map<number, IProduct>;
 
   constructor() {
     this.products = new Map();
@@ -24,6 +24,6 @@ class ProductsDB {
   }
 }
 
-const prodcuts_db = new ProductsDB();
+const db = new DB();
 
-export { prodcuts_db };
+export { db };

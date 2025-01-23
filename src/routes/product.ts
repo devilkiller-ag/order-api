@@ -1,12 +1,12 @@
 import express from 'express';
 
-import { handleAddProduct, handleGetProducts } from '../controllers/product';
+import { handleAddProduct, handleGetAllProducts } from '../controllers/product';
 
 
 const router = express.Router();
 
 router
-  .get('/', handleGetProducts)
+  .get('/', handleGetAllProducts)
   .post('/', handleAddProduct);
 
 
