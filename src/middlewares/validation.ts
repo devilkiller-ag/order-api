@@ -4,7 +4,17 @@ import { ApiError } from '../utils/ApiError';
 import { IProductType } from '../types/ProductType';
 
 
-// Middleware for validating product type query parameter
+/**
+ * Middleware for validating the product type query parameter in the request.
+ *
+ * Ensures that the `type` query parameter is a valid string and matches one of the allowed product types.
+ * If validation fails, it sends a 400 Bad Request response with a detailed error message.
+ *
+ * @param {Request} req - The Express request object.
+ * @param {Response} res - The Express response object.
+ * @param {NextFunction} next - The Express next middleware function.
+ * @returns {void}
+ */
 const validateProductType = (req: Request, res: Response, next: NextFunction): void => {
   const { type } = req.query;
 
@@ -22,7 +32,23 @@ const validateProductType = (req: Request, res: Response, next: NextFunction): v
 }
 
 
-// Middleware for validating the request body
+/**
+ * Middleware for validating the request body when adding a new product.
+ *
+ * Ensures that the request body contains all required fields (`name`, `type`, `inventory`, and `cost`),
+ * and that each field meets its specific validation criteria:
+ * - `name`: A non-empty string.
+ * - `type`: A valid string matching one of the allowed product types.
+ * - `inventory`: A number between 1 and 9999.
+ * - `cost`: A positive number.
+ *
+ * If validation fails, it sends a 400 Bad Request response with a detailed error message.
+ *
+ * @param {Request} req - The Express request object.
+ * @param {Response} res - The Express response object.
+ * @param {NextFunction} next - The Express next middleware function.
+ * @returns {void}
+ */
 const validateAddProductRequestBody = (req: Request, res: Response, next: NextFunction): void => {
   const { name, type, inventory, cost } = req.body;
 

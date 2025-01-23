@@ -11,19 +11,31 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-// Middlewares
+/**
+ * Express middleware to parse incoming JSON requests.
+ * @function
+ */
 app.use(bodyParser.json());
 
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Order API running successfully!');
-});
-
+/**
+ * Mounts the product routes on the /products path.
+ * This handles all product-related operations such as viewing and adding products.
+ * 
+ * @function
+ * @route {GET, POST} /products
+ */
 app.use('/products', productRoute);
 
 
-// Listen
+/**
+ * Starts the server and listens on the specified port.
+ * 
+ * @function
+ * @param {number} PORT - The port on which the server listens.
+ * 
+ * @returns {void} Logs a message to the console once the server is successfully running.
+ */
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT} at http://localhost:${PORT}`);
 });
