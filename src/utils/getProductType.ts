@@ -13,26 +13,14 @@ import { IProductType } from "../types/ProductType";
  * @throws Will not throw any errors but defaults to `IProductType.OTHER` for unrecognized input.
  */
 function getProductType(type: string): IProductType {
-  let productType: IProductType;
+  const productTypes: Record<string, IProductType> = {
+    gadget: IProductType.GADGET,
+    book: IProductType.BOOK,
+    food: IProductType.FOOD,
+    other: IProductType.OTHER
+  };
+  return productTypes[type.toLowerCase()];
 
-  switch (type.toLowerCase()) {
-    case 'gadget':
-      productType = IProductType.GADGET;
-      break;
-    case 'book':
-      productType = IProductType.BOOK;
-      break;
-    case 'food':
-      productType = IProductType.FOOD;
-      break;
-    case 'other':
-      productType = IProductType.OTHER;
-      break;
-    default:
-      productType = IProductType.OTHER;
-      break;
-  }
-  return productType;
 }
 
 

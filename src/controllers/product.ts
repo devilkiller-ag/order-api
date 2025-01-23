@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { db } from '../db/db';
 import { ApiError } from '../utils/ApiError';
 import { IProduct } from '../types/ProductType';
-import getProductType from '../utils/GetProductType';
+import getProductType from '../utils/getProductType';
 
 
 /**

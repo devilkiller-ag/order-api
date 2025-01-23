@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { ApiError } from '../utils/ApiError';
 import { IProductType } from '../types/ProductType';
+import { sendValidationError } from '../utils/sendErrors';
+import { isValidProductName, isValidProductType, isValidProductInventory, isValidProductCost } from '../utils/vaildateProductProperties';
 
 
 /**
@@ -18,13 +19,9 @@ import { IProductType } from '../types/ProductType';
 const validateProductType = (req: Request, res: Response, next: NextFunction): void => {
   const { type } = req.query;
 
-  if (type && (typeof type !== 'string' || !(Object.values(IProductType) as string[]).includes(type as string))) {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      `Type must be one of ${Object.values(IProductType).join(', ')}`,
-      req.originalUrl
-    ));
+  if (type && !isValidProductType(type)) {
+    const errorMessage = `Type must be one of ${Object.values(IProductType).join(', ')}`;
+    sendValidationError(res, errorMessage, req.originalUrl);
     return;
   }
 
@@ -53,51 +50,33 @@ const validateAddProductRequestBody = (req: Request, res: Response, next: NextFu
   const { name, type, inventory, cost } = req.body;
 
   if ([name, type, inventory, cost].some(value => value === undefined || value === null)) {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      "Request body is missing required fields",
-      req.originalUrl
-    ));
+    const errorMessage = "Request body is missing required fields";
+    sendValidationError(res, errorMessage, req.originalUrl);
     return;
   }
 
-  if (typeof name !== 'string' || name.trim() === '') {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      "Name must be a non-empty string",
-      req.originalUrl
-    ));
+  if (!isValidProductName(name)) {
+    const errorMessage = "Name must be a non-empty string";
+    sendValidationError(res, errorMessage, req.originalUrl);
     return;
   }
 
-  if (typeof type !== 'string' || !(Object.values(IProductType) as string[]).includes(type)) {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      `Type must be one of ${Object.values(IProductType).join(', ')}`,
-      req.originalUrl
-    ));
+  if (!isValidProductType(type)) {
+    const errorMessage = `Type must be one of ${Object.values(IProductType).join(', ')}`;
+    sendValidationError(res, errorMessage, req.originalUrl);
     return;
   }
 
-  if (typeof inventory !== 'number' || inventory < 1 || inventory > 9999) {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      "Inventory must be a number between 1 and 9999",
-      req.originalUrl
-    ));
+  if (!isValidProductInventory(inventory)) {
+    const errorMessage = "Inventory must be a number between 1 and 9999";
+    sendValidationError(res, errorMessage, req.originalUrl);
+    return;
   }
 
-  if (typeof cost !== 'number' || cost < 0) {
-    res.status(400).json(new ApiError(
-      new Date().toISOString(),
-      400,
-      "Cost must be a positive number",
-      req.originalUrl
-    ));
+  if (!isValidProductCost(cost)) {
+    const errorMessage = "Cost must be a positive number";
+    sendValidationError(res, errorMessage, req.originalUrl);
+    return;
   }
 
   next();
