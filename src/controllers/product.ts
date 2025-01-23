@@ -1,13 +1,14 @@
 import { db } from '../db/db';
-import { IProduct } from '../types/ProductTpye';
+import { IProduct } from '../types/ProductType';
 import { Request, Response } from 'express';
 
 
+// Controller for getting all products
 const handleGetAllProducts = (req: Request, res: Response) => {
 
 }
 
-
+// Controller for adding a new product
 const handleAddProduct = (req: Request, res: Response) => {
   const { name, type, inventory } = req.body;
 

@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from "body-parser";
 
 import { productRoute } from './routes/product';
+import { ApiError } from "./utils/ApiError";
 
 
 dotenv.config();

@@ -14,7 +14,7 @@ interface IProduct {
 }
 
 
-export type {
+export {
   IProductType,
   IProduct
 };

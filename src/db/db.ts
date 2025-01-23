@@ -2,7 +2,7 @@
  * In memory database for products.
  */
 
-import { IProductType, IProduct } from "../types/ProductTpye";
+import { IProductType, IProduct } from "../types/ProductType";
 
 class DB {
   products: Map<number, IProduct>;
