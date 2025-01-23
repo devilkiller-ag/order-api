@@ -1,5 +1,7 @@
-import express from 'express';
 import dotenv from "dotenv";
+import express from 'express';
+
+import { productRoute } from './routes/product';
 
 
 dotenv.config();
@@ -10,6 +12,9 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {
   res.send('Order API running successfully!');
 });
+
+
+app.use('/products', productRoute);
 
 
 app.listen(PORT, () => {

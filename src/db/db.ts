@@ -24,8 +24,6 @@ class ProductsDB {
   }
 }
 
-export {
-  IProductType,
-  IProduct,
-  ProductsDB
-};
+const prodcuts_db = new ProductsDB();
+
+export { prodcuts_db };

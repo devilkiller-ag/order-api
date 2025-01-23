@@ -1,9 +1,6 @@
 /**
  * Class for handling API errors.
  */
-/**
- * Class for handling API errors.
- */
 class ApiError extends Error {
   timestamp: string;
   status: number;
