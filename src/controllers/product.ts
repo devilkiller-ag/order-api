@@ -50,8 +50,6 @@ const handleAddProduct = (req: Request, res: Response): void => {
 
   db.add(newProduct);
 
-  console.log(db.products);
-
   res.status(201).json({
     "id": newProduct.id
   });
