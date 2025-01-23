@@ -7,3 +7,5 @@ lib/*
 .specmatic
 .vscode/*
 reports
+
+node_modules
