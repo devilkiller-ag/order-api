@@ -4,6 +4,24 @@ import { ApiError } from '../utils/ApiError';
 import { IProductType } from '../types/ProductType';
 
 
+// Middleware for validating product type query parameter
+const validateProductType = (req: Request, res: Response, next: NextFunction): void => {
+  const { type } = req.query;
+
+  if (type && (typeof type !== 'string' || !(Object.values(IProductType) as string[]).includes(type as string))) {
+    res.status(400).json(new ApiError(
+      new Date().toISOString(),
+      400,
+      `Type must be one of ${Object.values(IProductType).join(', ')}`,
+      req.originalUrl
+    ));
+    return;
+  }
+
+  next();
+}
+
+
 // Middleware for validating the request body
 const validateAddProductRequestBody = (req: Request, res: Response, next: NextFunction): void => {
   const { name, type, inventory } = req.body;
@@ -52,5 +70,6 @@ const validateAddProductRequestBody = (req: Request, res: Response, next: NextFu
 
 
 export {
+  validateProductType,
   validateAddProductRequestBody,
 };

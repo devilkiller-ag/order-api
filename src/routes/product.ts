@@ -1,13 +1,13 @@
 import express from 'express';
 
 import { handleAddProduct, handleGetAllProducts } from '../controllers/product';
-import { validateAddProductRequestBody } from '../middlewares/validation';
+import { validateProductType, validateAddProductRequestBody } from '../middlewares/validation';
 
 
 const router = express.Router();
 
 router
-  .get('/', handleGetAllProducts)
+  .get('/', validateProductType, handleGetAllProducts)
   .post('/', validateAddProductRequestBody, handleAddProduct);
 
 

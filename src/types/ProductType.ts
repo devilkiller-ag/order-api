@@ -1,8 +1,8 @@
 enum IProductType {
-  gadget = 'gadget',
-  book = 'book',
-  food = 'food',
-  other = 'other'
+  GADGET = 'gadget',
+  BOOK = 'book',
+  FOOD = 'food',
+  OTHER = 'other'
 }
 
 

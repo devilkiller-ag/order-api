@@ -15,6 +15,10 @@ class DB {
     return this.products.get(id);
   }
 
+  getAll() {
+    return [...this.products.values()];
+  }
+
   add(product: IProduct): void {
     this.products.set(product.id, product);
   }
