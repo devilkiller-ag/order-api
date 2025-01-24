@@ -1,0 +1,143 @@
+Using Specmatic environment variables: {"SPECMATIC_OAUTH2_TOKEN":"","CUSTOM_RESPONSE":"false","SPECMATIC_GENERATIVE_TESTS":"false","ONLY_POSITIVE":"false"}
+Running command: java "-DendpointsAPI=http://localhost:8080/actuator/mappings" -jar "/home/ashmit/.specmatic/specmatic.jar" test "/home/ashmit/Documents/specmatic-coding-test/products_api.yaml" --testBaseURL "http://localhost:3000"
+Specmatic Version: 2.2.1
+
+API Specification Summary: /home/ashmit/Documents/specmatic-coding-test/products_api.yaml
+  OpenAPI Version: 3.0.1
+  API Paths: 1, API Operations: 2
+  Schema components: 5, Security Schemes: none
+
+
+Failed to query actuator with error: Connection refused
+
+
+--------------------
+  Request to http://localhost:3000 at 2025-1-24 6:37:14.487
+    POST /products
+    Accept-Charset: UTF-8
+    Accept: */*
+    Content-Type: application/json
+    
+    {
+        "name": "iPhone",
+        "type": "gadget",
+        "inventory": 100,
+        "cost": 11920.0
+    }
+
+  Response at 2025-1-24 6:37:14.489
+    201 Created
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 9
+    ETag: W/"9-5GBxT5NCdhkU170LpfHQn4OAIbo"
+    Date: Fri, 24 Jan 2025 01:07:14 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+    
+    {
+        "id": 25
+    }
+
+ Scenario: POST /products -> 201 | EX:CREATE_PRODUCT has SUCCEEDED
+
+
+--------------------
+  Request to http://localhost:3000 at 2025-1-24 6:37:14.525
+    GET /products?type=gadget
+    Accept-Charset: UTF-8
+    Accept: */*
+    Content-Type: NOT SENT
+    
+    
+
+  Response at 2025-1-24 6:37:14.525
+    200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 478
+    ETag: W/"1de-8DEZEMPwzHNt/MTFHhxbB2IuE78"
+    Date: Fri, 24 Jan 2025 01:07:14 GMT
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+    
+    [
+        {
+            "id": 1,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 100,
+            "cost": 11920
+        },
+        {
+            "id": 5,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 100,
+            "cost": 0
+        },
+        {
+            "id": 6,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 1,
+            "cost": 11920
+        },
+        {
+            "id": 7,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 1,
+            "cost": 0
+        },
+        {
+            "id": 8,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 9999,
+            "cost": 11920
+        },
+        {
+            "id": 9,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 9999,
+            "cost": 0
+        },
+        {
+            "id": 25,
+            "name": "iPhone",
+            "type": "gadget",
+            "inventory": 100,
+            "cost": 11920
+        }
+    ]
+
+ Scenario: GET /products -> 200 | EX:GET_PRODUCTS has SUCCEEDED
+
+Could not load report configuration, coverage will be calculated but no coverage threshold will be enforced
+
+|---------------------------------------------------------------------|
+| SPECMATIC API COVERAGE SUMMARY                                      |
+|---------------------------------------------------------------------|
+| coverage | path      | method | response | #exercised | result      |
+|----------|-----------|--------|----------|------------|-------------|
+| 50%      | /products | POST   | 201      | 1          | covered     |
+|          |           |        | 400      | 0          | not covered |
+|          |           | GET    | 200      | 1          | covered     |
+|          |           |        | 400      | 0          | not covered |
+|---------------------------------------------------------------------|
+| 50% API Coverage reported from 1 Paths                              |
+|---------------------------------------------------------------------|
+
+
+
+Generating HTML report...
+Successfully generated HTML report in ./build/reports/specmatic/html
+Saving Open API Coverage Report json to ./build/reports/specmatic ...
+
+
+Tests run: 2, Successes: 2, Failures: 0, Errors: 0
+
+Executed at 2025-01-24T06:37:14.753325133
+Specmatic contract test exited with code 0
