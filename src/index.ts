@@ -39,3 +39,6 @@ app.use('/products', productRoute);
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT} at http://localhost:${PORT}`);
 });
+
+
+export default app;
