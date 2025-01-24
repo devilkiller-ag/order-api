@@ -10,10 +10,7 @@
   "scripts": {
     "start": "tsx src/index.ts",
     "dev": "nodemon --watch src --exec 'tsx' ./src/index.ts",
-    "test": "jest --coverage",
-    "specmatic:generate": "specmatic generate --config specmatic.config.json",
-    "specmatic:test": "specmatic test --config specmatic.config.json --testBaseURL http://localhost:3000",
-    "test3": "cross-env SPECMATIC_GENERATIVE_TESTS=true SPECMATIC_LOG_LEVEL=debug NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 node ./node_modules/jest/bin/jest.js --collectCoverage --detectOpenHandles"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -27,10 +24,8 @@
   "homepage": "https://github.com/devilkiller-ag/specmatic-coding-test#readme",
   "dependencies": {
     "body-parser": "^1.20.3",
-    "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "specmatic": "^2.2.1"
+    "express": "^4.21.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
