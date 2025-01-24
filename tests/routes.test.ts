@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import app from '../src/index';
+import { app, server } from '../src/index';
 import { db } from '../src/db/db';
 import { IProductType } from '../src/types/ProductType';
 
@@ -14,6 +14,13 @@ describe('Product Routes', () => {
    */
   beforeEach(() => {
     db.products.clear();
+  });
+
+  /**
+   * Runs after all tests to close the server.
+   */
+  afterAll(() => {
+    server.close();
   });
 
   /**
