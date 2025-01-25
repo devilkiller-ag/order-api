@@ -25,6 +25,26 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run start
-    - run: npm run specmatic:test
+    
+    # Install dependencies
+    - name: Install Dependencies
+      run: npm ci
+    
+    # Start the server in the background
+    - name: Start Server
+      run: npm run start & 
+            echo $! > server.pid # Save the server's process ID for cleanup later
+    
+    # Wait for the server to start
+    - name: Wait for Server to be Ready
+      run: npx wait-on http://localhost:3000
+    
+    # Run the Specmatic Tests
+    - name: Run Specmatic Tests
+      run: npm run specmatic:test
+    
+    # Stop the server
+    - name: Stop Server
+      run: |
+            kill $(cat server.pid)
+            rm server.pid
