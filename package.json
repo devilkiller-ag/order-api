@@ -11,7 +11,7 @@
     "start": "tsx src/index.ts",
     "dev": "nodemon --watch src --exec 'tsx' ./src/index.ts",
     "test": "jest --coverage",
-    "test:specmatic": "npm run start & echo $! > server.pid && specmatic test --config specmatic.config.json --testBaseURL http://localhost:3000"
+    "test:specmatic": "npm run start & specmatic test --config specmatic.config.json --testBaseURL http://localhost:3000 && fuser -k 3000/tcp || true"
   },
   "repository": {
     "type": "git",
