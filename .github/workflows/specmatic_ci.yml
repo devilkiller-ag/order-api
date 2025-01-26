@@ -31,4 +31,4 @@ jobs:
     
     # Run the Specmatic Tests
     - name: Run Specmatic Tests
-      run: npm run test:specmatic
+      run: npm run test:specmatic:generative
